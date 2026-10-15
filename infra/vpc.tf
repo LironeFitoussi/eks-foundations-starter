@@ -43,6 +43,6 @@ module "vpc" {
     "kubernetes.io/role/elb" = "1"
   }
 
-  enable_nat_gateway = true
+  enable_nat_gateway = var.enable_outbound_internet_access
   single_nat_gateway = true
 }

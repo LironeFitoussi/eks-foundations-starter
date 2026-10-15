@@ -1,3 +1,4 @@
+### Networking
 variable "cluster_name" {
   description = "Name of the EKS cluster. Also used as a prefix for related resources."
   type        = string
@@ -8,6 +9,31 @@ variable "vpc_cidr" {
   description = "CIDR block for the VPC."
   type        = string
   default     = "10.0.0.0/16"
+}
+
+variable "enable_outbound_internet_access" {
+  description = "Whether to deploy a NAT gateway to enable access from private subnets to the internet."
+  type        = bool
+  default     = false
+}
+
+# EKS Variables
+variable "kubernetes_version" {
+  description = "Kubernetes minor version for the control plane and managed add-ons."
+  type        = string
+  default     = "1.36"
+}
+
+variable "endpoint_public_access" {
+  description = "Expose the Kubernetes API endpoint publicly so kubectl can reach it from outside the VPC."
+  type        = bool
+  default     = true
+}
+
+variable "public_access_cidrs" {
+  description = "CIDRs allowed to reach the public API endpoint."
+  type        = list(string)
+  default     = ["0.0.0.0/0"]
 }
 
 variable "tags" {
