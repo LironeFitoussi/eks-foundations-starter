@@ -14,7 +14,8 @@ variable "vpc_cidr" {
 variable "enable_outbound_internet_access" {
   description = "Whether to deploy a NAT gateway to enable access from private subnets to the internet."
   type        = bool
-  default     = false
+  # default     = false
+  default = true
 }
 
 # EKS Variables
@@ -36,6 +37,33 @@ variable "public_access_cidrs" {
   default     = ["0.0.0.0/0"]
 }
 
+# Node Groups
+
+variable "node_instance_types" {
+  description = "Instance types for the node group."
+  type        = list(string)
+  default     = ["t3.medium", "t3a.small", "t3.medium", "t3a.medium", "t3.large", "t3a.large"]
+}
+
+variable "node_desired_size" {
+  description = "Desired number of instances for the nodes."
+  type        = number
+  default     = 2
+}
+
+variable "node_min_size" {
+  description = "Minimum number of instances for the nodes."
+  type        = number
+  default     = 1
+}
+
+variable "node_max_size" {
+  description = "Maximum number of instances for the nodes."
+  type        = number
+  default     = 3
+}
+
+# Shared
 variable "tags" {
   description = "Additional tags applied to every resource."
   type        = map(string)

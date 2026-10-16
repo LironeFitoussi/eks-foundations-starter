@@ -5,6 +5,11 @@ locals {
 
   public_subnet_offset = 128
 
+  # eks_addons = {
+  #   "vpc-cni"    = {}
+  #   "kube-proxy" = {}
+  # }
+
   tags = merge(
     {
       Project   = "eks-foundations"
